@@ -18,7 +18,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🔎 PatchCore Lite ~ Transistor Defect Inspector")
+st.title("PatchCore Lite ~ Transistor Defect Inspector")
 st.caption("Upload a transistor image to detect anomalies using PatchCore feature matching.")
 
 # Model Loading
@@ -104,7 +104,7 @@ def generate_heatmap(captured_features, memory_bank, img_display_rgb):
 # Sidebar
 with st.sidebar:
     with st.sidebar:
-        st.markdown("## ⚙️ Model Info")
+        st.markdown("## Model Info")
         st.metric(
             label="System Threshold", 
             value="2.2263",
@@ -115,7 +115,7 @@ with st.sidebar:
             )
         )
     st.divider()
-    st.header("🎨 Heatmap")
+    st.header("Heatmap")
     alpha = st.slider("Overlay opacity", 0.1, 0.9, 0.5, 0.05)
     colormap_name = st.selectbox("Colormap", ["JET", "HOT", "INFERNO", "MAGMA"])
     colormap_map  = {
@@ -128,7 +128,7 @@ with st.sidebar:
 
 # Upload & Inference Method Selection
 input_method = st.radio(
-    "📸 Choose Input Method:", 
+    "Choose Input Method:", 
     ["Upload File", "Take Live Photo"], 
     horizontal=True
 )
@@ -195,10 +195,10 @@ if uploaded:
                   delta_color="inverse")
 
     if is_anomaly:
-        col_m3.markdown("### Status\n<span style='color:#ff4d4d; font-weight:bold; font-size:24px;'>ANOMALY ⚠️</span>", 
+        col_m3.markdown("### Status\n<span style='color:#ff4d4d; font-weight:bold; font-size:24px;'>ANOMALY</span>", 
                     unsafe_allow_html=True)
     else:
-        col_m3.markdown("### Status\n<span style='color:#2ecc71; font-weight:bold; font-size:24px;'>NORMAL ✅</span>", 
+        col_m3.markdown("### Status\n<span style='color:#2ecc71; font-weight:bold; font-size:24px;'>NORMAL</span>", 
                     unsafe_allow_html=True)
 
     st.progress(
@@ -207,7 +207,7 @@ if uploaded:
     )
 
     # Image Panels
-    st.subheader("📸 Inspection Results")
+    st.subheader("Inspection Results")
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -226,7 +226,7 @@ if uploaded:
         st.image(blended, use_container_width=True)
 
     # Patch Score Stats
-    with st.expander("🔢 Patch-level score statistics"):
+    with st.expander("Patch-level score statistics"):
         flat = patch_scores.flatten()
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Peak Defect Intensity",  f"{flat.max():.4f}",
@@ -243,4 +243,4 @@ if uploaded:
                   "than uniform background noise.")
 
 else:
-    st.info("👆 Make sure to send a transistor image to begin inspection.")
+    st.info("Make sure to send a transistor image to begin inspection.")
