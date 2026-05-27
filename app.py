@@ -212,18 +212,18 @@ if uploaded:
 
     with col1:
         st.markdown("**Original**")
-        st.image(padded, width="stretch")
+        st.image(padded, width="always")
 
     with col2:
         st.markdown("**Anomaly Heatmap**")
         heat_only = cv2.applyColorMap(
             (np.clip(heat_up, 0, 1) * 255).astype(np.uint8), selected_cmap
         )
-        st.image(cv2.cvtColor(heat_only, cv2.COLOR_BGR2RGB), width="stretch")
+        st.image(cv2.cvtColor(heat_only, cv2.COLOR_BGR2RGB), width="always")
 
     with col3:
         st.markdown("**Overlay**")
-        st.image(blended, width="stretch")
+        st.image(blended, width="always")
 
     # Patch Score Stats
     with st.expander("Patch-level score statistics"):
