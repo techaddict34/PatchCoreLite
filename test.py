@@ -5,11 +5,13 @@ from torchvision.models import ResNet18_Weights
 
 from preprocessing import seed_everything, prepare_image, hook_fn, PatchCoreLite
 
-# --- CONFIG ---
+# Configurations
 MODEL_PATH  = "transistor_lite_model.pt"
 TEST_ROOT   = "transistor/test"
 TEMPERATURE = 0.1
 
+# Redefine some of the functions from train.py to really isolate their environment
+# and just so that test.py can be an independent script
 
 def build_backbone(device):
     resnet = models.resnet18(weights=ResNet18_Weights.DEFAULT)
@@ -71,6 +73,7 @@ def print_report(results, threshold, mu, sigma):
     print(f"  ACCURACY: {correct}/{total} ({100*correct/total:.1f}%)")
     print(f"{'='*60}\n")
 
+# PUT IT ALL TGT
 
 if __name__ == "__main__":
     seed_everything(99)
